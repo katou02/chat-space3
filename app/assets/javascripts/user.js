@@ -56,7 +56,8 @@ $(document).on('turbolinks:load', function() {
         alert("通信エラーです。ユーザーが表示できません。");
       });
   });
-  $(document).on("click", ".user-search-add", function() {
+  $("#user-search-result").on("click", ".user-search-add", function() {
+    console.log("ok");
     const userName = $(this).attr("data-user-name");
     const userId = $(this).attr("data-user-id");
     $(this)
