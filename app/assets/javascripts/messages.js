@@ -1,4 +1,4 @@
-$(function(){
+$(document).on('turbolinks:load',function(){
   function buildHTML(message){
     var img = message.image ? `<img src= ${ message.image }>` : "";
     var html =  `<div class="message" data-id="${message.id}" >
@@ -25,7 +25,6 @@ $(function(){
     $('#ajax').removeAttr('data-disable-with');
     var url = $(this).attr('action')
     $('#new_message')[0].reset();
-   
     $.ajax({
       url: url,
       type: "POST",
@@ -40,7 +39,7 @@ $(function(){
       $(".messages").animate({scrollTop: $(".messages")[0].scrollHeight});
     })
     .fail(function(){
-      alert('エラー');
+      alert('エラーが発生しています');
     })
   });
     var reloadMessages = function() {
@@ -59,7 +58,7 @@ $(function(){
       $(".messages").animate({scrollTop: $(".messages")[0].scrollHeight});
       })
       .fail(function() {
-        　alert('error');
+        alert('error');
       });
     });
   };
