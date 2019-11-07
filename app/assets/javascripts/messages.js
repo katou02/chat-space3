@@ -42,7 +42,10 @@ $(document).on('turbolinks:load',function(){
       alert('エラーが発生しています');
     })
   });
+
+
     var reloadMessages = function() {
+      if(window.location.href.match(/\/groups\/\d+\/messages/)){
       last_message_id = $('.message').last().data("id");
       $.ajax({
         url: 'api/messages',
@@ -51,16 +54,23 @@ $(document).on('turbolinks:load',function(){
         data: {id: last_message_id}
       })
       .done(function(messages) {
-      var insertHTML = '';
-      messages.forEach(function (message) {
-      insertHTML = buildHTML(message);
-      $('.messages').append(insertHTML);
-      $(".messages").animate({scrollTop: $(".messages")[0].scrollHeight});
+       if(messages.length > 0){ 
+          var insertHTML = '';
+          messages.forEach(function (message) {
+            insertHTML = buildHTML(message);
+            $('.messages').append(insertHTML);
+            $(".messages").animate({scrollTop: $(".messages")[0].scrollHeight});
+          })
+        }
       })
       .fail(function() {
         alert('error');
       });
+    };
+  }
+    // if (window.location.href.match(/messages/)){
+      setInterval(reloadMessages, 5000);
+    
     });
-  };
-  setInterval(reloadMessages, 5000);
-});
+
+
