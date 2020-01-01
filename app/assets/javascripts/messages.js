@@ -50,6 +50,7 @@ $(document).on('turbolinks:load',function(){
         dataType: 'json',
         data: {id: last_message_id}
       })
+      
       .done(function(messages) {
       var insertHTML = '';
       messages.forEach(function (message) {
