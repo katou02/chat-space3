@@ -9,7 +9,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @tweets = Tweet.all
   end
 
   def update
